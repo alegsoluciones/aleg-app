@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+coverage
+test
+*.log
+.git
+.env
+.gitignore
+README.md
+# Keep config but ignore local overrides if any
+*.local

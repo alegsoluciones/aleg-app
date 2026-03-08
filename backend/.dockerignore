@@ -1,0 +1,14 @@
+node_modules
+dist
+storage
+coverage
+test
+*.log
+.git
+.env
+.gitignore
+README.md
+nest-cli.json
+tsconfig.build.json
+# Keep config but ignore local overrides if any
+*.local

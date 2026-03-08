@@ -1,0 +1,20 @@
+src/components/patients/PatientListTable.tsx(4,10): error TS1484: 'Patient' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/patients/PatientListTable.tsx(14,13): error TS2339: Property 'tenant' does not exist on type 'TenantContextProps'.
+src/pages/CalendarPage.tsx(18,12): error TS6133: 'currentTime' is declared but its value is never read.
+src/pages/CalendarPage.tsx(160,68): error TS2304: Cannot find name 'getStatusDropdown'.
+src/pages/clinical/ClinicalRecordsPage.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/pages/clinical/ClinicalRecordsPage.tsx(9,32): error TS2339: Property 'error' does not exist on type '{ patients: Patient[]; loading: boolean; isProcessing: boolean; API_URL: string; createPatient: (data: any) => Promise<any>; updatePatient: (id: string, data: Partial<Patient>) => Promise<...>; ... 12 more ...; finalizeBatch: () => Promise<...>; }'.
+src/pages/clinical/PatientDetailPage.tsx(2,8): error TS6133: 'React' is declared but its value is never read.
+src/pages/clinical/PatientDetailPage.tsx(4,10): error TS1484: 'Patient' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/pages/clinical/PatientDetailPage.tsx(7,42): error TS6133: 'Archive' is declared but its value is never read.
+src/pages/clinical/PatientDetailPage.tsx(8,5): error TS6133: 'MapPin' is declared but its value is never read.
+src/pages/clinical/PatientDetailPage.tsx(8,33): error TS6133: 'Check' is declared but its value is never read.
+src/pages/clinical/PatientDetailPage.tsx(8,40): error TS6133: 'X' is declared but its value is never read.
+src/pages/clinical/PatientDetailPage.tsx(15,11): error TS6133: 'tenant' is declared but its value is never read.
+src/pages/clinical/PatientDetailPage.tsx(15,13): error TS2339: Property 'tenant' does not exist on type 'TenantContextProps'.
+src/pages/clinical/PatientDetailPage.tsx(157,130): error TS2339: Property 'subjective' does not exist on type 'MedicalRecord'.
+src/pages/clinical/PatientDetailPage.tsx(159,42): error TS2304: Cannot find name 'ChevronRight'.
+src/pages/subscription/SubscriptionPage.tsx(3,33): error TS2307: Cannot find module '../context/TenantContext' or its corresponding type declarations.
+src/pages/subscription/SubscriptionPage.tsx(20,64): error TS7006: Parameter 'acc' implicitly has an 'any' type.
+src/pages/subscription/SubscriptionPage.tsx(20,69): error TS7006: Parameter 'code' implicitly has an 'any' type.
+src/pages/subscription/SubscriptionPage.tsx(53,62): error TS7006: Parameter 'code' implicitly has an 'any' type.

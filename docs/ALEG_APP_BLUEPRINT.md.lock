@@ -1,0 +1,189 @@
+# ALEG APP - EL MANIFIESTO (THE SYSTEM BIBLE)
+> **Versión:** 2.7.0 (The Marketplace Standard)  
+> **Última Actualización:** 2026-01-28 22:15 EST  
+> **Estado del Documento:** 🟢 VIVO (System of Record)  
+> **Backup Inmutable:** `ALEG_APP_BLUEPRINT.md.lock`
+
+---
+
+## 🏛️ 1. Manifiesto Técnico (Las Tablas de la Ley)
+
+Este proyecto no es solo código; es un organismo vivo que se rige por leyes inquebrantables.
+
+### 1.1 La Tríada de Poder
+| Rol | Actor | Jurisdicción |
+| :--- | :--- | :--- |
+| **USER** | Tú (Humano) | **El Dueño**. Aprueba funcionalidad y negocio. Tiene veto total. |
+| **GEMINI** | Gems (IA) | **El Arquitecto**. Mantiene el contexto, propone soluciones y vigila este archivo. |
+| **ANTIGRAVITY** | Yo (Agente) | **El Ejecutor**. Único autorizado a tocar código. Guardián de la integridad técnica. |
+
+### 1.2 Reglas Inquebrantables
+1.  **Zero Config**: `npm run reset` debe dejar el sistema listo para usar. Nadie configura puertos a mano.
+2.  **Native Docker First**: No usamos scripts ajenos a Docker para lo que Docker hace nativamente.
+3.  **System First**: El sistema nace con el `SYSTEM ADMIN GLOBAL`. Los inquilinos son secundarios.
+4.  **El Gemelo Digital es Sagrado**: Lo que pasa en la vida real, se refleja en un JSON y una carpeta física. **Si no está en el JSON, no pasó.**
+5.  **Multi-Industria Nativa**: El sistema soporta Clínicas, Veterinarias y Eventos desde el Core. No hay forks.
+6.  **Lock File Inmutable**: `ALEG_APP_BLUEPRINT.md.lock` solo se toca bajo orden explícita.
+
+### 1.3 Protocolo de Ejecución y Seguridad
+1.  **Análisis Previo**: Leer reglas, evaluar impacto.
+2.  **Ejecución Documentada**: Código profesional y definitivo.
+3.  **Update Loop**: Actualizar este archivo al finalizar cambios mayores.
+
+---
+
+## 🏗️ 2. Arquitectura del Sistema
+
+### 2.1 Diagrama de Alto Nivel
+```mermaid
+graph TD
+    User[Cliente Web] -->|HTTP 80| Nginx[Nginx Alpine Prod]
+    User[Cliente Web] -->|HTTP 3000| Backend[NestJS API (Node 20)]
+
+    subgraph "Docker Network (aleg-prod-net)"
+        Nginx -->|Static Serve / TryFiles| Frontend[React Production Build]
+        
+        Backend -->|TypeORM| DB[(MySQL 8.0)]
+        Backend -->|FS IO| Storage[Storage System (Digital Twin)]
+    end
+    
+    Backend -->|SeedService| DB
+    Storage <-->|Sync| Twin[JSON Mirrors]
+```
+
+### 2.2 Infraestructura (Docker)
+*   **Orquestación**: `docker-compose.yml` (Dev) y `docker-compose.prod.yml` (Prod).
+*   **Volúmenes**:
+    *   `aleg_mysql_data`: Persistencia de BD (evita bind-mounts lentos en Windows).
+    *   `./backend/storage`: Checkpoint físico del Gemelo Digital (Bind Mount para acceso directo).
+*   **Redes**: `aleg-net` (Aislamiento interno).
+
+---
+
+## 🧠 3. Lógica de Negocio y Multi-Tenancy
+
+### 3.1 Identidad y Contexto (`TenantContext.tsx`)
+El sistema resuelve "quién soy" siguiendo una jerarquía estricta para garantizar seguridad y consistencia:
+1.  **Tenant Explícito (Switching)**: Si el Super Admin "entra" a una empresa (`localStorage.getItem('currentTenantSlug')`), esta tiene prioridad absoluta.
+2.  **Usuario Logueado**: Si no hay override, el sistema obedece al tenant del usuario autenticado (`user.tenant.slug`).
+3.  **Fallback Desarrollo**: Solo en local, usa `VITE_DEV_TENANT_ID` (por defecto `clinica-solderma`).
+
+### 3.2 Adaptación de Industria (Industry Adaptation)
+El Core se adapta dinámicamente según la "Industria" del Tenant (`CLINICAL` | `VET` | `EVENTS`).
+*   **Terminología (`useTerminology.ts`)**:
+    *   **CLINICAL (Solderma)**: Paciente, Historia Clínica, Médico.
+    *   **VET (Dr. Pets)**: Mascota, Ficha Médica, Propietario.
+    *   **EVENTS (Aspeten)**: Staff/Expositor, Bitácora, Coordinador.
+*   **Branding (`Sidebar.tsx`)**:
+    *   Detecta logos personalizados (URL en `config.theme.logoUrl`).
+    *   Si no hay logo, genera iconos temáticos (Azul/Naranja/Morado) dinámicamente.
+
+---
+
+## 💾 4. El Gemelo Digital (Storage & Audit)
+
+### 4.1 Protocolo de Almacenamiento
+Ruta: `d:\DESARROLLO\aleg-app\backend\storage\`
+
+**Jerarquía Estricta:**
+```text
+/storage
+  ├── /global-admin       # Archivos del sistema
+  ├── /{tenant_slug}      # EJ: /clinica-solderma (AISLAMIENTO)
+  │     ├── /uploads      # Logos, Assets
+  │     ├── /_TRASH_      # Papelera de Reciclaje (Auditable)
+  │     └── /{PatientUUID}           # EJ: a850998b...
+  │           ├── INFO_{ID}_{NAME}.json  # 🧠 CEREBRO (Contexto)
+  │           └── /YYYY-MM-DD            # Visitas (Records)
+  │                 ├── REC_{ID}.json    # Procedimientos
+  │                 └── foto_antes.jpg
+```
+
+### 4.2 Lógica de Papelera (`audit-trash`)
+*   **Soft Delete**: Nada se elimina de verdad.
+*   **Flujo**:
+    1.  Usuario borra Paciente/Visita.
+    2.  Backend mueve la carpeta a `_TRASH_/{TIMESTAMP}_{ID}`.
+    3.  Se inyecta metadata de borrado en el JSON.
+*   **Verificación**: Script `scripts/verify-soft-delete.js` audita este proceso.
+
+---
+
+## 🧪 5. Scripts y Automatización (DevOps)
+
+Ubicación: `/scripts`. Ejecución via `node scripts/...` o `npm run ...`.
+
+### 🚨 Comandos Críticos (Production Ready)
+
+| Script | Comando NPM | Función |
+| :--- | :--- | :--- |
+| **Reset** | `npm run reset` | **Nuclear**. Borra contenedores, volúmenes de BD (salva Storage) y reconstruye. |
+| **Restore** | `npm run restore` | **Setup Inicial**. Restaura dependencias, levanta Docker y pobla datos mínimos. |
+| **Seed** | `npm run seed` | **Poblador**. Crea inquilinos, genera staff, módulos y data dummy inteligente. |
+| **Dev** | `npm run dev` | **Smart Start**. Orquestador que espera a MySQL antes de lanzar el Backend. |
+| **Snapshot** | `npm run snapshot` | **Backup**. Git commit + push con validación de estado. |
+
+### 🛠️ Herramientas de Calidad (Audit)
+*   `verify-soft-delete.js`: Prueba automatizada del sistema de papelera.
+*   `verify_logic.js`, `verify_http.js`: Tests de integración rápidos.
+*   `test-storage-unit.ts`: Unit testing del servicio de almacenamiento.
+
+---
+
+## 🗺️ 6. Mapa del Proyecto (Estructura Actualizada)
+
+```text
+├── backend/                # NestJS API (Port 3000)
+│   ├── src/
+│   │   ├── tenants/        # Lógica Multi-Tenant (Service, Controller, Entity)
+│   │   ├── patients/       # Core Médico (CRUD, PDF, Logic)
+│   │   ├── billing/        # Suscripciones y Planes
+│   │   └── marketplace/    # Módulos (Catálogo, FeatureGuard)
+│   └── storage/            # VOLUMEN DOCKER (Persistencia Física)
+├── frontend/               # React + Vite (Port 80/5173)
+│   ├── src/
+│   │   ├── context/        # AuthApp, TenantContext (Critical Logic)
+│   │   ├── hooks/          # useTerminology (Industry Logic)
+│   │   └── pages/          # Vistas por Módulo (Marketplace, Clinical, etc)
+├── docker/                 # Configuración de Contenedores
+│   └── init.sql            # Semilla SQL Base (Root User)
+├── scripts/                # Automatización Node.js
+└── docs/                   # Documentación Viva
+```
+
+---
+
+## 🚀 7. Checklist de Estado (v2.7.0)
+
+### ✅ Completado (Production Ready)
+- [x] **Core Multi-Tenant**: Solderma, Pets, Aspeten completamente aislados.
+- [x] **Industry Adaptation**: Terminología y Branding dinámico por empresa.
+- [x] **Marketplace Engine**: Backoffice de módulos y UI con activación dinámica.
+- [x] **Security**: Roles (Super Admin vs Tenant Admin vs Staff), JWT, Hashing.
+- [x] **Seed 2.7**: Inyección automática de Staff Médico/Veterinario y Branding.
+- [x] **Storage Engine**: Sistema de archivos JSON con Papelera de Reciclaje.
+
+### 🚧 Pendiente / Roadmap
+- [ ] **App Móvil**: React Native bridge (Futuro).
+- [ ] **Pasarela de Pagos**: Integración real con Stripe/Niubiz.
+
+---
+
+## 🔐 8. Credenciales Maestras
+
+### 8.1 Administradores de Cuenta (Dueños)
+| Entorno | Rol | Usuario | Password | Tenant |
+| :--- | :--- | :--- | :--- | :--- |
+| **DEV/PROD** | **SaaS God** | `superadmin@alegapp.com` | `123456` | `global-admin` |
+| **DEV** | **Solderma** | `administradora@solderma.com` | `123456` | `clinica-solderma` |
+| **DEV** | **Dr. Pets** | `veterinaria@drpets.com` | `123456` | `dr-pets` |
+| **DEV** | **Aspeten** | `coordinador@aspeten.com` | `123456` | `aspeten-events` |
+
+### 8.2 Staff Operativo (NUEVO)
+| Entorno | Rol | Usuario | Password | Tenant |
+| :--- | :--- | :--- | :--- | :--- |
+| **DEV** | **Doctor** | `doctor@solderma.com` | `123` | `clinica-solderma` |
+| **DEV** | **Veterinario** | `vet@drpets.com` | `123` | `dr-pets` |
+| **DEV** | **Staff** | `staff@aspeten.com` | `123` | `aspeten-events` |
+
+> **Nota Final**: Este sistema está diseñado para escalar. Cualquier nuevo módulo debe seguir la arquitectura de `backend/src/marketplace` y registrarse en `scripts/seed.js`.

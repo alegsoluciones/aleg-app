@@ -1,0 +1,18 @@
+# Datos de la base de datos (NUNCA subir esto)
+docker/mysql/data/
+mysql-data/
+
+# Dependencias
+node_modules/
+dist/
+build/
+
+# Entorno y logs
+.env
+*.log
+.idx/node_modules/
+dist/
+.env
+storage/
+.DS_Store
+token.txt

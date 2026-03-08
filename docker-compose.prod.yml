@@ -1,0 +1,65 @@
+services:
+  # 🗄️ BASE DE DATOS (Layer 1)
+  mysql:
+    image: mysql:8.0
+    container_name: aleg-mysql-prod
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_DATABASE: aleg_global
+    volumes:
+      - aleg_mysql_data_prod:/var/lib/mysql
+      # En producción, init.sql solo corre si el volumen está vacío
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - aleg-prod-net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-root}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    restart: always
+
+  # 🧠 BACKEND API (Layer 2)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aleg-backend-prod
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      DB_NAME: aleg_global
+      # SWAGGER_ENABLED: "false" # Default in prod
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - aleg-prod-net
+    restart: always
+
+  # 🎨 FRONTEND SPA (Layer 3)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: aleg-frontend-prod
+    ports:
+      - "80:80" # Único puerto expuesto al mundo
+    depends_on:
+      - backend
+    networks:
+      - aleg-prod-net
+    restart: always
+
+networks:
+  aleg-prod-net:
+    driver: bridge
+
+volumes:
+  aleg_mysql_data_prod:

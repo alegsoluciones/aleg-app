@@ -1,0 +1,58 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: aleg-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: aleg_global
+    ports:
+      - "3307:3306"
+    volumes:
+      # PERSISTENCIA: Nombre semántico oficial
+      - aleg_mysql_data:/var/lib/mysql
+      # INICIALIZACIÓN: Mapeo nativo (La clave del éxito)
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - aleg-net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot" ]
+      interval: 10s
+      timeout: 5s
+      retries: 40
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: aleg-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: aleg_global
+    volumes:
+      - ./storage:/home/node/app/storage
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - aleg-net
+
+  frontend:
+    build: ./frontend
+    container_name: aleg-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - aleg-net
+
+networks:
+  aleg-net:
+    driver: bridge
+
+volumes:
+  aleg_mysql_data:
