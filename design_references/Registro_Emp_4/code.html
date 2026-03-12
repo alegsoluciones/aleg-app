@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro Paso 3: Módulos y Plugins - ALEG Soluciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1d4ed8",
+                        "navy-master": "#020617",
+                        "aleg-blue": "#1d4ed8" 
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --navy-deep: #020617;
+            --aleg-blue: #1d4ed8;
+            --glass-white: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .navy-master-bg {
+            background-color: var(--navy-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .hexagonal-grid-3d {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+            transform: perspective(1000px) rotateY(-15deg) scale(1.1);
+            opacity: 0.6;
+        }
+        .crystalline-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            bottom: -10%;
+            left: -10%;
+            pointer-events: none;
+        }
+        .step-active {
+            background: linear-gradient(to right, rgba(29, 78, 216, 0.15), transparent);
+            border-left: 4px solid var(--aleg-blue);
+        }
+        .step-done {
+            border-left: 4px solid rgba(255,255,255,0.2);
+        }
+        .step-pending {
+            border-left: 4px solid transparent;
+        }
+        .module-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+        }
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -10px rgba(0,0,0,0.05);
+            border-color: var(--aleg-blue);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            @apply bg-aleg-blue;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="h-screen bg-slate-50 flex overflow-hidden antialiased">
+<aside class="w-[28%] navy-master-bg flex flex-col p-12 text-white relative">
+<div class="hexagonal-grid-3d"></div>
+<div class="crystalline-glow"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex items-center gap-4 mb-16">
+<div class="bg-aleg-blue p-2.5 rounded-xl">
+<span class="material-symbols-outlined text-white text-2xl">shield</span>
+</div>
+<span class="text-xl font-black tracking-tighter uppercase">ALEG Soluciones</span>
+</div>
+<nav class="flex-1 space-y-6">
+<div class="step-done py-3 pl-6 -ml-6 flex items-center gap-5 opacity-60">
+<div class="w-10 h-10 rounded-full border-2 border-slate-600 flex items-center justify-center font-bold text-slate-300">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-300 uppercase tracking-wider">DATOS &amp; PERFIL</p>
+<p class="text-xs text-slate-500">Completado</p>
+</div>
+</div>
+<div class="step-done py-3 pl-6 -ml-6 flex items-center gap-5 opacity-60">
+<div class="w-10 h-10 rounded-full border-2 border-slate-600 flex items-center justify-center font-bold text-slate-300">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-300 uppercase tracking-wider">PLAN DE SUSCRIPCIÓN</p>
+<p class="text-xs text-slate-500">Completado</p>
+</div>
+</div>
+<div class="step-active py-4 pl-6 -ml-6 flex items-center gap-5">
+<div class="w-10 h-10 rounded-full bg-aleg-blue flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(29,78,216,0.5)]">3</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">MÓDULOS &amp; PLUGINS</p>
+<p class="text-xs text-slate-400">Personaliza tus herramientas</p>
+</div>
+</div>
+<div class="step-pending py-4 pl-6 -ml-6 flex items-center gap-5 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center font-bold text-slate-400">4</div>
+<div>
+<p class="text-sm font-bold text-slate-400 uppercase tracking-wider">PAGO &amp; CONTRATO</p>
+<p class="text-xs text-slate-500">Cierre del registro legal</p>
+</div>
+</div>
+</nav>
+<div class="mt-auto pt-10 border-t border-white/10 opacity-50">
+<p class="text-[10px] font-bold tracking-[0.3em] uppercase">Security Engine v4.0</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-hidden flex flex-col bg-white">
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="max-w-6xl mx-auto px-12 py-12">
+<header class="mb-10">
+<h1 class="text-4xl font-black text-slate-900 tracking-tight mb-2">Potencia tu Ecosistema</h1>
+<p class="text-lg text-slate-500">Añade módulos adicionales o plugins de pago único para optimizar tu gestión.</p>
+</header>
+<div class="flex flex-col lg:flex-row gap-10">
+<div class="flex-1">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="module-card p-6 bg-white rounded-2xl flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-blue-50 text-aleg-blue rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">inventory_2</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-200" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer" for="toggle1"></label>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 text-lg">Inventario Pro</h3>
+<p class="text-sm text-slate-500 mt-1 mb-6 flex-1">Control avanzado de stock con alertas inteligentes de reposición y trazabilidad multi-almacén.</p>
+<div class="flex items-end justify-between border-t border-slate-50 pt-4">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pago Mensual</span>
+<span class="text-xl font-black text-slate-900">S/. 45.00</span>
+</div>
+</div>
+<div class="module-card p-6 bg-white rounded-2xl flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">medical_services</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-200" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer" for="toggle2"></label>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 text-lg">Telemedicina</h3>
+<p class="text-sm text-slate-500 mt-1 mb-6 flex-1">Plataforma integrada de videollamadas con historial clínico encriptado en tiempo real.</p>
+<div class="flex items-end justify-between border-t border-slate-50 pt-4">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pago Mensual</span>
+<span class="text-xl font-black text-slate-900">S/. 60.00</span>
+</div>
+</div>
+<div class="module-card p-6 bg-white rounded-2xl flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">api</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-200" id="toggle3" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer" for="toggle3"></label>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 text-lg">Marketing API</h3>
+<p class="text-sm text-slate-500 mt-1 mb-6 flex-1">Integración directa con herramientas de Email Marketing y automatización de campañas.</p>
+<div class="flex items-end justify-between border-t border-slate-50 pt-4">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pago Único</span>
+<span class="text-xl font-black text-slate-900">S/. 120.00</span>
+</div>
+</div>
+<div class="module-card p-6 bg-white rounded-2xl flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">hub</span>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-200" id="toggle4" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-slate-200 cursor-pointer" for="toggle4"></label>
+</div>
+</div>
+<h3 class="font-bold text-slate-900 text-lg">Conector CRM</h3>
+<p class="text-sm text-slate-500 mt-1 mb-6 flex-1">Sincronización bidireccional de leads y clientes con tu CRM preferido de manera estable.</p>
+<div class="flex items-end justify-between border-t border-slate-50 pt-4">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Pago Mensual</span>
+<span class="text-xl font-black text-slate-900">S/. 25.00</span>
+</div>
+</div>
+</div>
+</div>
+<aside class="w-full lg:w-80">
+<div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 sticky top-0">
+<h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">Resumen de Selección</h4>
+<div class="space-y-4 mb-8">
+<div>
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Plan Seleccionado</p>
+<div class="flex items-center justify-between">
+<span class="font-bold text-slate-900">PRO PLAN</span>
+<span class="text-sm text-slate-600">S/. 149.00</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-200">
+<p class="text-[10px] font-bold text-slate-400 uppercase mb-3">Módulos Adicionales</p>
+<ul class="space-y-2">
+<li class="flex items-center justify-between text-sm">
+<span class="text-slate-600">Inventario Pro</span>
+<span class="font-medium text-slate-900">S/. 45.00</span>
+</li>
+<li class="flex items-center justify-between text-sm">
+<span class="text-slate-600">Conector CRM</span>
+<span class="font-medium text-slate-900">S/. 25.00</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-6 border-t-2 border-dashed border-slate-200 mb-6">
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold text-slate-900">Total Mensual</span>
+<span class="text-2xl font-black text-aleg-blue">S/. 219.00</span>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 italic">* Precios incluyen IGV</p>
+</div>
+<div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+<p class="text-[10px] text-blue-700 font-medium leading-relaxed">
+<span class="material-symbols-outlined text-[14px] align-middle mr-1">info</span>
+                                Los complementos de pago único se verán reflejados en tu primera facturación.
+                            </p>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<footer class="bg-white border-t border-slate-100 px-12 py-6 flex items-center justify-between z-50">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-300 tracking-[0.2em] uppercase">DERECHOS RESERVADOS POR ALEG SOLUCIONES S.A.C. | 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 font-bold text-sm hover:text-slate-600 transition-colors uppercase tracking-widest">Atrás</button>
+<button class="px-8 py-4 bg-aleg-blue text-white font-bold rounded-2xl shadow-xl shadow-aleg-blue/30 hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center gap-3 tracking-wide">
+                REVISAR CONTRATO Y PAGAR
+                <span class="material-symbols-outlined text-xl">payments</span>
+</button>
+</div>
+</footer>
+</main>
+
+</body></html>

@@ -1,17 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Buffer } from 'buffer';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
 
-// Polyfill Buffer for the browser (required for react-pdf)
-(globalThis as any).Buffer = Buffer;
-
-import App from './App'
-import './App.css'
-
-
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 )

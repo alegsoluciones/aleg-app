@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ALEG Business - Animated Login 3D</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1d4ed8",
+                        "navy-master": "#020617",
+                        "brand-blue": "#0ea5e9",
+                        "brand-purple": "#a855f7"
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        @keyframes float-grid {
+            0%, 100% {
+                transform: perspective(1000px) rotateY(-5deg) rotateX(10deg) scale(1.2) translateY(0) translateX(0);
+            }
+            33% {
+                transform: perspective(1000px) rotateY(-4deg) rotateX(11deg) scale(1.22) translateY(-10px) translateX(5px);
+            }
+            66% {
+                transform: perspective(1000px) rotateY(-6deg) rotateX(9deg) scale(1.18) translateY(5px) translateX(-5px);
+            }
+        }
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 0.12;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.18;
+                transform: scale(1.1);
+            }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .navy-master-bg {
+            background-color: #020617;
+            position: relative;
+            overflow: hidden;
+        }
+        .hexagonal-grid-3d {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+            transform-origin: center;
+            opacity: 0.8;
+            animation: float-grid 20s ease-in-out infinite;
+        }
+        .hexagonal-grid-3d::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 0.9) 100%);
+            pointer-events: none;
+        }
+        .crystalline-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+            filter: blur(80px);
+            top: -15%;
+            left: -15%;
+            pointer-events: none;
+            animation: pulse-glow 12s ease-in-out infinite;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .badge-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .badge-glass:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .btn-glow {
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px -6px rgba(29, 78, 216, 0.4);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 12px 24px -6px rgba(29, 78, 216, 0.6);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-white flex flex-col antialiased">
+<header class="fixed top-0 left-0 w-full h-14 flex items-center px-8 glass-nav z-50">
+<div class="flex items-center space-x-6 text-sm font-medium w-full">
+<span class="text-slate-900 font-bold tracking-tight">PERFILES EN DESARROLLO</span>
+<div class="h-4 w-px bg-slate-300"></div>
+<nav class="flex items-center space-x-6 text-slate-500">
+<a class="hover:text-primary transition-colors" href="#">Super-Admin</a>
+<div class="h-3 w-px bg-slate-200"></div>
+<a class="hover:text-primary transition-colors" href="#">Derm</a>
+<div class="h-3 w-px bg-slate-200"></div>
+<a class="hover:text-primary transition-colors" href="#">Vet</a>
+<div class="h-3 w-px bg-slate-200"></div>
+<a class="hover:text-primary transition-colors" href="#">Craft</a>
+<div class="h-3 w-px bg-slate-200"></div>
+<a class="hover:text-primary transition-colors" href="#">Events</a>
+</nav>
+</div>
+</header>
+<main class="flex-1 flex min-h-screen">
+<section class="hidden lg:flex flex-1 navy-master-bg items-center justify-center p-16 relative">
+<div class="hexagonal-grid-3d"></div>
+<div class="crystalline-glow"></div>
+<div class="relative z-10 max-w-xl">
+<h1 class="text-6xl xl:text-7xl font-extrabold text-white leading-[1.1] mb-8">
+                Un Sistema.<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple">Múltiples Mundos.</span>
+</h1>
+<p class="text-xl text-slate-300 mb-12 leading-relaxed max-w-lg">
+                La plataforma definitiva para gestionar negocios especializados con precisión milimétrica y seguridad de grado militar.
+            </p>
+<div class="flex flex-wrap gap-4">
+<div class="badge-glass flex items-center px-6 py-3.5 rounded-2xl text-white text-sm font-bold tracking-wide cursor-default">
+<span class="material-symbols-outlined text-brand-blue mr-3 scale-110">verified_user</span>
+                    AES-256 CLOUD
+                </div>
+<div class="badge-glass flex items-center px-6 py-3.5 rounded-2xl text-white text-sm font-bold tracking-wide cursor-default">
+<span class="material-symbols-outlined text-brand-purple mr-3 scale-110">groups</span>
+                    MULTI-TENANT
+                </div>
+</div>
+</div>
+</section>
+<section class="flex-1 bg-white flex items-center justify-center p-8 lg:p-16">
+<div class="w-full max-w-[460px]">
+<div class="bg-white rounded-[2.5rem]">
+<div class="flex items-center mb-12">
+<div class="bg-primary p-3.5 rounded-2xl shadow-lg shadow-primary/20 mr-5">
+<span class="material-symbols-outlined text-white text-3xl">shield</span>
+</div>
+<div>
+<h2 class="text-2xl font-black text-slate-900 tracking-tight leading-none">ALEG SOLUCIONES</h2>
+<span class="text-[10px] font-bold text-slate-400 tracking-[0.25em] uppercase mt-2.5 block">Platform Core Engine</span>
+</div>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase ml-1 tracking-wider">Email o Usuario</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-2xl border-slate-100 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all outline-none text-slate-900 placeholder-slate-400" placeholder="nombre@empresa.com" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase ml-1 tracking-wider">Contraseña</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-2xl border-slate-100 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all outline-none text-slate-900 placeholder-slate-400" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-sm py-1">
+<label class="flex items-center cursor-pointer group">
+<input class="w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="ml-2 text-slate-600 font-medium group-hover:text-slate-900 transition-colors">Recordarme</span>
+</label>
+<a class="text-primary font-bold hover:text-blue-700 transition-colors" href="#">¿Olvidaste tu clave?</a>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-2xl btn-glow text-lg tracking-wide mt-2 h-16" type="submit">
+                        Iniciar Sesión
+                    </button>
+</form>
+<div class="mt-10 text-center">
+<p class="text-slate-500 text-sm">
+                        ¿No tienes una cuenta? <a class="text-primary font-bold hover:underline" href="#">Solicitar Acceso</a>
+</p>
+</div>
+<div class="mt-12 pt-10 border-t border-slate-100 flex flex-col items-center">
+<div class="flex items-center gap-2 opacity-30 grayscale mb-2">
+<span class="text-[10px] font-black text-slate-900 tracking-[0.4em] uppercase">ALEG SOLUCIONES | 2026</span>
+</div>
+<p class="text-[10px] text-slate-400 font-medium uppercase tracking-widest">v4.0.2 Deployment</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+</body></html>

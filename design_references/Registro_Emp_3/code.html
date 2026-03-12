@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro Paso 2: Planes de Suscripción - ALEG Soluciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1d4ed8",
+                        "navy-master": "#020617",
+                        "aleg-blue": "#1d4ed8" 
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --navy-deep: #020617;
+            --aleg-blue: #1d4ed8;
+            --glass-white: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .navy-master-bg {
+            background-color: var(--navy-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .hexagonal-grid-3d {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+            transform: perspective(1000px) rotateY(-15deg) scale(1.1);
+            opacity: 0.6;
+        }
+        .crystalline-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            bottom: -10%;
+            left: -10%;
+            pointer-events: none;
+        }
+        .step-active {
+            background: linear-gradient(to right, rgba(29, 78, 216, 0.15), transparent);
+            border-left: 4px solid var(--aleg-blue);
+        }
+        .step-done {
+            border-left: 4px solid #10b981;
+        }
+        .step-pending {
+            border-left: 4px solid transparent;
+        }
+        .card-plan {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-plan:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+        }
+        .card-plan.active {
+            border-color: var(--aleg-blue);
+            box-shadow: 0 0 0 2px var(--aleg-blue), 0 20px 25px -5px rgba(29, 78, 216, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .toggle-switch {
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 9999px;
+            display: inline-flex;
+            gap: 4px;
+        }
+        .toggle-option {
+            padding: 8px 24px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .toggle-option.active {
+            background: white;
+            color: var(--aleg-blue);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .toggle-option:not(.active) {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body class="h-screen bg-slate-50 flex overflow-hidden antialiased">
+<aside class="w-[30%] navy-master-bg flex flex-col p-12 text-white relative">
+<div class="hexagonal-grid-3d"></div>
+<div class="crystalline-glow"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex items-center gap-4 mb-20">
+<div class="bg-aleg-blue p-2.5 rounded-xl">
+<span class="material-symbols-outlined text-white text-2xl">shield</span>
+</div>
+<span class="text-xl font-black tracking-tighter">ALEG SOLUCIONES</span>
+</div>
+<nav class="flex-1 space-y-8">
+<div class="step-done py-4 pl-6 -ml-6 flex items-center gap-5">
+<div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">DATOS &amp; PERFIL</p>
+<p class="text-xs text-emerald-400">Completado</p>
+</div>
+</div>
+<div class="step-active py-4 pl-6 -ml-6 flex items-center gap-5">
+<div class="w-10 h-10 rounded-full bg-aleg-blue flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(29,78,216,0.5)]">2</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">PLAN DE SUSCRIPCIÓN</p>
+<p class="text-xs text-slate-400">Selecciona tu nivel de acceso</p>
+</div>
+</div>
+<div class="step-pending py-4 pl-6 -ml-6 flex items-center gap-5 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center font-bold text-slate-400">3</div>
+<div>
+<p class="text-sm font-bold text-slate-400 uppercase tracking-wider">MÓDULOS &amp; PLUGINS</p>
+<p class="text-xs text-slate-500">Personaliza tus herramientas</p>
+</div>
+</div>
+<div class="step-pending py-4 pl-6 -ml-6 flex items-center gap-5 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center font-bold text-slate-400">4</div>
+<div>
+<p class="text-sm font-bold text-slate-400 uppercase tracking-wider">PAGO &amp; CONTRATO</p>
+<p class="text-xs text-slate-500">Cierre del registro legal</p>
+</div>
+</div>
+</nav>
+<div class="mt-auto pt-10 border-t border-white/10 opacity-50">
+<p class="text-[10px] font-bold tracking-[0.3em] uppercase">Security Engine v4.0</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative">
+<div class="max-w-6xl mx-auto px-12 py-16 pb-40">
+<header class="mb-12 text-center md:text-left">
+<h1 class="text-4xl font-black text-slate-900 tracking-tight mb-3">Escoge tu Plan de Suscripción</h1>
+<p class="text-lg text-slate-500">Selecciona el nivel de acceso que mejor se adapte a tu empresa</p>
+</header>
+<div class="flex flex-col items-center mb-16">
+<div class="toggle-switch">
+<div class="toggle-option">FACTURACIÓN MENSUAL</div>
+<div class="toggle-option active flex items-center gap-2">
+                        FACTURACIÓN ANUAL
+                        <span class="bg-emerald-100 text-emerald-600 px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider">20% DESC.</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="card-plan border border-slate-100 rounded-3xl p-8 bg-white flex flex-col">
+<div class="mb-8">
+<h4 class="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">Básico</h4>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900">S/.</span>
+<span class="text-5xl font-black text-slate-900">149</span>
+<span class="text-slate-400 font-medium">/mes</span>
+</div>
+</div>
+<ul class="space-y-4 mb-10 flex-1">
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Hasta 3 usuarios concurrentes
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Módulo de Facturación Electrónica
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Reportes básicos de ventas
+                        </li>
+<li class="flex items-start gap-3 text-slate-400 text-sm opacity-50">
+<span class="material-symbols-outlined text-lg">cancel</span>
+                            Multi-sucursal avanzado
+                        </li>
+</ul>
+<button class="w-full py-4 border-2 border-slate-100 text-slate-400 font-bold rounded-2xl hover:border-aleg-blue hover:text-aleg-blue transition-all uppercase tracking-widest text-xs">Seleccionar</button>
+</div>
+<div class="card-plan active border border-slate-100 rounded-3xl p-8 bg-white flex flex-col relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-aleg-blue text-white px-6 py-1.5 rounded-bl-2xl text-[10px] font-black uppercase tracking-widest">Recomendado</div>
+<div class="mb-8">
+<h4 class="text-sm font-black text-aleg-blue uppercase tracking-widest mb-4">Profesional</h4>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900">S/.</span>
+<span class="text-5xl font-black text-slate-900">299</span>
+<span class="text-slate-400 font-medium">/mes</span>
+</div>
+</div>
+<ul class="space-y-4 mb-10 flex-1">
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Usuarios ilimitados
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Gestión Integral de Inventarios
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Módulo CRM &amp; Fidelización
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Dashboard de Inteligencia de Negocios
+                        </li>
+</ul>
+<button class="w-full py-4 bg-aleg-blue text-white font-bold rounded-2xl shadow-lg shadow-aleg-blue/20 transition-all uppercase tracking-widest text-xs">Plan Seleccionado</button>
+</div>
+<div class="card-plan border border-slate-100 rounded-3xl p-8 bg-white flex flex-col">
+<div class="mb-8">
+<h4 class="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">Enterprise</h4>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-slate-900">S/.</span>
+<span class="text-5xl font-black text-slate-900">599</span>
+<span class="text-slate-400 font-medium">/mes</span>
+</div>
+</div>
+<ul class="space-y-4 mb-10 flex-1">
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Todo lo del plan Profesional
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            API de Integración Personalizada
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Soporte 24/7 con Account Manager
+                        </li>
+<li class="flex items-start gap-3 text-slate-600 text-sm">
+<span class="material-symbols-outlined text-aleg-blue text-lg">check_circle</span>
+                            Seguridad con Encriptación Bancaria
+                        </li>
+</ul>
+<button class="w-full py-4 border-2 border-slate-100 text-slate-400 font-bold rounded-2xl hover:border-aleg-blue hover:text-aleg-blue transition-all uppercase tracking-widest text-xs">Seleccionar</button>
+</div>
+</div>
+</div>
+<footer class="fixed bottom-0 right-0 w-[70%] bg-white border-t border-slate-100 px-12 py-6 flex items-center justify-between z-50">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-300 tracking-[0.2em] uppercase">DERECHOS RESERVADOS POR ALEG SOLUCIONES S.A.C. | 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 font-bold text-sm hover:text-slate-600 transition-colors uppercase tracking-widest">Atrás</button>
+<button class="px-8 py-4 bg-aleg-blue text-white font-bold rounded-2xl shadow-xl shadow-aleg-blue/30 hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center gap-3 tracking-wide">
+                    CONTINUAR AL SIGUIENTE PASO
+                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</footer>
+</main>
+
+</body></html>

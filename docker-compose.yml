@@ -1,21 +1,22 @@
 services:
-  mysql:
-    image: mysql:8.0
-    container_name: aleg-mysql
+  database:
+    image: postgres:16-alpine
+    container_name: aleg-database
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: aleg_global
+      POSTGRES_USER: ${DB_USER:-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-aleg_global}
     ports:
-      - "3307:3306"
+      - "5432:5432"
     volumes:
       # PERSISTENCIA: Nombre semántico oficial
-      - aleg_mysql_data:/var/lib/mysql
+      - aleg_system_data:/var/lib/postgresql/data
       # INICIALIZACIÓN: Mapeo nativo (La clave del éxito)
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - aleg-net
+      - aleg-network
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot" ]
+      test: [ "CMD", "pg_isready", "-U", "root", "-d", "aleg_global" ]
       interval: 10s
       timeout: 5s
       retries: 40
@@ -27,32 +28,38 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DB_HOST: mysql
-      DB_PORT: 3306
+      DB_TYPE: postgres
+      DB_HOST: database
+      DB_PORT: 5432
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: aleg_global
     volumes:
       - ./storage:/home/node/app/storage
     depends_on:
-      mysql:
+      database:
         condition: service_healthy
     networks:
-      - aleg-net
+      - aleg-network
 
   frontend:
-    build: ./frontend
+    image: node:20-alpine
     container_name: aleg-frontend
+    working_dir: /app
     ports:
-      - "80:80"
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    command: npm run dev -- --host
     depends_on:
       - backend
     networks:
-      - aleg-net
+      - aleg-network
 
 networks:
-  aleg-net:
+  aleg-network:
     driver: bridge
 
 volumes:
-  aleg_mysql_data:
+  aleg_system_data:
+

@@ -1,34 +1,31 @@
+# 🔄 TEAM TASK SYNC - ALEG APP
+> **Fase Actual:** FASE 5 - TRANSPLANTE UI/UX (Rediseño Total)
+> **Dueño / Aprobador:** Jorge (User)
+> **Arquitecto / Auditor:** Gemini (AI)
 
-# Team Task Sync
-## Active Tasks
-- [ ] Phase 6: Infrastructure & Mobile (Pending Instructions)
+## 📋 ESTADO DE ETAPAS (FASE 5)
 
-## 🚀 SAAS CORE & CUSTOMIZATION (PHASE 5) [DONE]
-- [x] **5.1 Pricing Engine**: Plan Management & CRUD.
-- [x] **5.2 Industry Profiles**: Industry Templates & Default Configs.
-- [x] **5.3 Dynamic Dashboard**: Widget Registry & Drag-and-Drop Base.
-- [x] **5.4 SaaS Genesis**: Intelligent Onboarding & Tenant Creation.
-- [x] **5.5 Tenant Customization**: Self-service Dashboard Layout.
+### 🔴 ETAPA 0: Contención [EN PROGRESO]
+- [x] Purgar GitHub y establecer Código Local como Verdad Absoluta.
+- [x] Renombrar `frontend` a `frontend_legacy`.
+- [x] Establecer Nueva Estructura Documental (General, Frontend, Backend, Sync).
+- [ ] Mover archivos HTML/Imágenes a `/design_references`.
+- [ ] Inicializar nuevo proyecto Vite/React en carpeta `/frontend`.
 
-## 🔥 MIGRACIÓN DASHBOARD V2 [DONE]
-- [x] Migración de Shell Visual (Layout & Estilos)
-- [x] **Modular Engine (v2.18.0)**: Capsules, WidgetRegistry & Marketplace.
+### 🟢 ETAPA 1: Fundación del Nuevo Frontend & Infraestructura Docker [COMPLETADO]
+- [x] Migración de Tailwind Config y Global CSS.
+- [x] Importación del UI Kit Base (Componentes sin lógica).
+- [x] Restaurar Contextos Core (`AuthContext`, `TenantContext`).
+- [x] Refactor Docker (Postgres/MySQL Agnóstico, Redes Unificadas).
 
-## 🛡️ SECURITY & COMPLIANCE (PHASE 3.1 & 3.2)
-- [x] **API Shielding**: Feature Guards on critical endpoints (Appointments).
-- [x] **Marketplace Logic**: Purchase Flow Validation (Block -> Buy -> Unblock).
-- [x] **Safety Locks**: Global SubscriptionGuard & Suspension Logic. **[VERIFIED]**
+### 🟡 ETAPA 2: Trasplante Progresivo [EN PROGRESO]
+- [x] 2.1 Bloque Auth & Onboarding (Login Stitch Completado).
+- [ ] 2.2 Super Admin Dashboard (God Mode).
+- [ ] 2.3 Tenant Shell (Dashboard Dinámico de Industria).
+- [ ] 2.4 Core Operativo (Agenda, Pacientes, Clinical Canvas).
+- [ ] 2.5 Flujo Comercial (POS e Inventario).
 
-## 📦 DATA INFRASTRUCTURE (PHASE 4.1 & 4.2)
-- [x] **Client Exit Package**: Human-Readable Backup Service (The Humanizer).
-- [x] **Disaster Recovery**: `generate-full-backup.js` (SQL + Storage Mirror).
-- [x] **Recovery Protocol**: `README_RECOVERY.md` created.
-
-## 🟢 COMMERCE ENGINE (PHASE 4 - v4.5.0) [DONE]
-- [x] **Integración POS-Inventario**
-- [x] **Inventory Module**: Product/Service Polymorphism & Stock Control.
-- [x] **Billing Module**: Invoice Persistence & Atomic Stock Deduction.
-- [x] **Agenda -> Caja Bridge**: Smart Payment Flow.
-
-### Estado Actual: PRE-PRODUCCIÓN (Fase de Validación)
-> PLATAFORMA INTEGRADA AL 100%. El ciclo de negocio (SaaS -> Clinical -> Financial -> Inventory) está cerrado.
+## 🚨 REGLAS DE ORO ACTUALES
+* NADA se sube a GitHub ni se elimina sin la aprobación de Jorge.
+* **Jules Status:** Standby (Solo consultas de seguridad bajo demanda).
+* **Antigravity Status:** Ejecutor activo en entorno local.

@@ -394,15 +394,18 @@ Evolución del núcleo para soporte masivo y personalización.
 
 *   **5.0: Security Cleanup [COMPLETADO]**
     *   Sanitización de `src/auth` y `src/saas`. Validación RBAC y eliminación de deuda técnica.
-*   **5.1: Foundation Sync [IN PROGRESS]**
+*   **5.1: Foundation Sync & Docker [COMPLETADO]**
     *   Porting de Tailwind Config, Global CSS y Componentes Base (UI Kit).
-*   **5.2: Super Admin UI**
+    *   Infraestructura Profesional Agnóstica (Docker, Postgres/MySQL).
+*   **5.2: Auth & Onboarding (Login Stitch) [COMPLETADO]**
+    *   Transplante de flujo de login y recuperación de contextos.
+*   **5.3: Super Admin UI**
     *   Transplante de vistas de Perfil, Planes y Módulos.
-*   **5.3: Shared Modules**
+*   **5.4: Shared Modules**
     *   UI Update para Agenda, Cobros y Pagos.
-*   **5.4: Clinical Core**
+*   **5.5: Clinical Core**
     *   UI Update para Pacientes y Historias Clínicas (Derma/Vet).
-*   **5.5: Public SaaS Onboarding**
+*   **5.6: Public SaaS Onboarding**
     *   Flujo de Registro público.
 
 ## 🔮 Fase 6: Infraestructura & Backlog Futuro

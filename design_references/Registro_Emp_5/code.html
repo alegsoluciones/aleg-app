@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro Paso 4: Contrato y Pago - ALEG Soluciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1d4ed8",
+                        "navy-master": "#020617",
+                        "aleg-blue": "#1d4ed8" 
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --navy-deep: #020617;
+            --aleg-blue: #1d4ed8;
+            --glass-white: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .navy-master-bg {
+            background-color: var(--navy-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .hexagonal-grid-3d {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+            transform: perspective(1000px) rotateY(-15deg) scale(1.1);
+            opacity: 0.6;
+        }
+        .crystalline-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            bottom: -10%;
+            left: -10%;
+            pointer-events: none;
+        }
+        .step-active {
+            background: linear-gradient(to right, rgba(29, 78, 216, 0.15), transparent);
+            border-left: 4px solid var(--aleg-blue);
+        }
+        .step-done {
+            border-left: 4px solid #10b981;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .contract-box {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #475569;
+        }
+        .tab-active {
+            border-bottom: 2px solid var(--aleg-blue);
+            color: var(--aleg-blue);
+        }
+    </style>
+</head>
+<body class="h-screen bg-slate-50 flex overflow-hidden antialiased">
+<aside class="w-[30%] navy-master-bg flex flex-col p-12 text-white relative">
+<div class="hexagonal-grid-3d"></div>
+<div class="crystalline-glow"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex items-center gap-4 mb-20">
+<div class="bg-aleg-blue p-2.5 rounded-xl">
+<span class="material-symbols-outlined text-white text-2xl">shield</span>
+</div>
+<span class="text-xl font-black tracking-tighter">ALEG SOLUCIONES</span>
+</div>
+<nav class="flex-1 space-y-8">
+<div class="step-done py-4 pl-6 -ml-6 flex items-center gap-5 opacity-80">
+<div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">DATOS &amp; PERFIL</p>
+<p class="text-xs text-slate-400">Completado</p>
+</div>
+</div>
+<div class="step-done py-4 pl-6 -ml-6 flex items-center gap-5 opacity-80">
+<div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">PLAN DE SUSCRIPCIÓN</p>
+<p class="text-xs text-slate-400">Completado</p>
+</div>
+</div>
+<div class="step-done py-4 pl-6 -ml-6 flex items-center gap-5 opacity-80">
+<div class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-white">
+<span class="material-symbols-outlined text-xl">check</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">MÓDULOS &amp; PLUGINS</p>
+<p class="text-xs text-slate-400">Completado</p>
+</div>
+</div>
+<div class="step-active py-4 pl-6 -ml-6 flex items-center gap-5">
+<div class="w-10 h-10 rounded-full bg-aleg-blue flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(29,78,216,0.5)]">4</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">PAGO &amp; CONTRATO</p>
+<p class="text-xs text-slate-400">Cierre del registro legal</p>
+</div>
+</div>
+</nav>
+<div class="mt-auto pt-10 border-t border-white/10 opacity-50">
+<p class="text-[10px] font-bold tracking-[0.3em] uppercase">Security Engine v4.0</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative">
+<div class="max-w-5xl mx-auto px-12 py-16 pb-40">
+<header class="mb-10">
+<h1 class="text-4xl font-black text-slate-900 tracking-tight mb-3">Finalizar y Activar Cuenta</h1>
+<p class="text-lg text-slate-500">Revisa tu contrato y selecciona un método de pago para comenzar.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="lg:col-span-2 space-y-12">
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-aleg-blue">description</span>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Contrato de Servicio</h3>
+</div>
+<div class="rounded-2xl border border-slate-100 overflow-hidden shadow-sm">
+<div class="contract-box custom-scrollbar">
+<h4 class="font-bold text-slate-900 mb-4">Términos y Condiciones del Servicio ALEG Soluciones</h4>
+<p class="mb-4">Este Contrato de Servicio (el "Contrato") rige el uso de los sistemas de gestión proporcionados por ALEG Soluciones S.A.C. Al marcar la casilla "He leído y acepto", usted acepta quedar vinculado por los términos aquí expuestos.</p>
+<p class="mb-4">1. <strong>Uso de Licencia:</strong> ALEG Soluciones otorga una licencia no exclusiva y no transferible para acceder a la plataforma según el plan seleccionado.</p>
+<p class="mb-4">2. <strong>Pagos y Renovación:</strong> Los pagos se procesarán de forma mensual o anual según la elección del usuario. La falta de pago resultará en la suspensión temporal del servicio.</p>
+<p class="mb-4">3. <strong>Protección de Datos:</strong> Nos comprometemos a proteger su información de acuerdo con la Ley de Protección de Datos Personales vigente.</p>
+<p class="mb-4">4. <strong>Responsabilidades:</strong> El cliente es responsable de la exactitud de los datos ingresados en el sistema y del uso de sus credenciales de acceso.</p>
+<p>Para consultas legales adicionales, puede contactar a nuestro departamento jurídico en legal@alegsoluciones.pe</p>
+</div>
+<div class="bg-slate-50 p-6 border-t border-slate-100">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-aleg-blue focus:ring-aleg-blue/20 transition-all" type="checkbox"/>
+<span class="text-sm font-semibold text-slate-700 group-hover:text-slate-900">He leído y acepto el contrato de servicio</span>
+</label>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-aleg-blue">payments</span>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Método de Pago</h3>
+</div>
+<div class="border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
+<div class="flex border-b border-slate-100 bg-slate-50/50">
+<button class="flex-1 py-4 px-6 text-xs font-bold uppercase tracking-widest tab-active flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">credit_card</span>
+                                    Tarjeta de Crédito/Débito
+                                </button>
+<button class="flex-1 py-4 px-6 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">account_balance</span>
+                                    Transferencia / Yape / Plin
+                                </button>
+</div>
+<div class="p-8 bg-white">
+<div class="grid grid-cols-2 gap-6">
+<div class="col-span-2 space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">Número de Tarjeta</label>
+<div class="relative">
+<input class="w-full px-4 py-3.5 rounded-xl border-slate-200 focus:ring-4 focus:ring-aleg-blue/5 focus:border-aleg-blue transition-all outline-none" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
+<img alt="Visa" class="h-4 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs8EIn89a8pxt1PPvJq0_yHE_D6mZBxafs5b7fNCv4GQm80GUiigKS7Qcv1SUb4dbGtBfJytXtMKUxg5j6_n8DHNqN6CTaIhO0uNdBUT7V3HaL4stSVCznUyKecO4vV9GD7_bp9BUTFmSXinCH3AFIHRsAtYpwZDSuEIQCn7-7_i8BI8YC9a1I8-c2Kj7a1BdoZECNzaMTwolhkprUaHmnEikBs6XSJI1e96_V_0qUIvTU4Z3gQI0eLNkDhoffw3OzPXSl40nZQg"/>
+<img alt="Mastercard" class="h-4 opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcr3CD4eJ7brU6JWSSCkJ7VHRPHrJ9ImgDwWKSs0Sm2q4vscEUIFtGwsxfgPiq45p3rEJsMLQvV9smEOtrfeBc3LuTWQjLrW0HV455kFXGfX4bl7gHQUw0lpXr5-mCXJmdnl9pCNnDa2NEHy0EL5tStVgNbq4-Fac0-pQkaoqtC9sRgehLtqlen5wyM0B1JNHLWqX5aIoDLtJmZqae8iY0eMOP2hhA8tt5Vs-nyFBR2Sxb5cHceYr8OGAuwq5HcdukxSJcazk1Aw"/>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">Fecha de Expiración</label>
+<input class="w-full px-4 py-3.5 rounded-xl border-slate-200 focus:ring-4 focus:ring-aleg-blue/5 focus:border-aleg-blue transition-all outline-none" placeholder="MM/YY" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-wider ml-1">CVV</label>
+<input class="w-full px-4 py-3.5 rounded-xl border-slate-200 focus:ring-4 focus:ring-aleg-blue/5 focus:border-aleg-blue transition-all outline-none" placeholder="***" type="password"/>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-2 text-slate-400">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Pago Seguro Encriptado con SSL de 256 bits</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-1">
+<div class="sticky top-12 space-y-6">
+<div class="bg-slate-50 rounded-2xl p-8 border border-slate-100">
+<h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest mb-6 border-b border-slate-200 pb-4">Resumen de Compra</h3>
+<div class="space-y-4 mb-8">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Plan Business (Anual)</span>
+<span class="font-bold text-slate-900">S/ 1,200.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Módulo eCommerce</span>
+<span class="font-bold text-slate-900">S/ 450.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Descuento (PROMO)</span>
+<span class="font-bold text-emerald-600">- S/ 150.00</span>
+</div>
+</div>
+<div class="pt-6 border-t border-slate-200 space-y-1">
+<div class="flex justify-between items-end">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total a Pagar</span>
+<span class="text-3xl font-black text-aleg-blue">S/ 1,500.00</span>
+</div>
+<p class="text-[10px] text-slate-400 text-right uppercase font-bold">Incluye IGV</p>
+</div>
+</div>
+<div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 flex gap-4">
+<span class="material-symbols-outlined text-aleg-blue">info</span>
+<p class="text-xs text-blue-800 leading-relaxed">Su cuenta será activada de forma inmediata tras la confirmación exitosa de su método de pago.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="fixed bottom-0 right-0 w-[70%] bg-white border-t border-slate-100 px-12 py-6 flex items-center justify-between z-50">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-300 tracking-[0.2em] uppercase">DERECHOS RESERVADOS POR ALEG SOLUCIONES S.A.C. | 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 font-bold text-sm hover:text-slate-600 transition-colors uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+                    Atrás
+                </button>
+<button class="px-8 py-4 bg-aleg-blue text-white font-bold rounded-2xl shadow-xl shadow-aleg-blue/30 hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center gap-3 tracking-wide">
+                    CONFIRMAR PAGO Y ACTIVAR SISTEMA
+                    <span class="material-symbols-outlined text-xl">rocket_launch</span>
+</button>
+</div>
+</footer>
+</main>
+
+</body></html>

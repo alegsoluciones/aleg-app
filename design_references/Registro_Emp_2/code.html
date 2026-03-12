@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Registro de Empresa - ALEG Soluciones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1d4ed8","navy-master": "#020617",
+                        "aleg-blue": "#1d4ed8" 
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --navy-deep: #020617;
+            --aleg-blue: #1d4ed8;
+            --glass-white: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .navy-master-bg {
+            background-color: var(--navy-deep);
+            position: relative;
+            overflow: hidden;
+        }
+        .hexagonal-grid-3d {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='0.5'/%3E%3C/svg%3E");
+            background-size: 56px 100px;
+            transform: perspective(1000px) rotateY(-15deg) scale(1.1);
+            opacity: 0.6;
+        }
+        .crystalline-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, transparent 70%);
+            filter: blur(60px);
+            bottom: -10%;
+            left: -10%;
+            pointer-events: none;
+        }
+        .step-active {
+            background: linear-gradient(to right, rgba(29, 78, 216, 0.15), transparent);
+            border-left: 4px solid var(--aleg-blue);
+        }
+        .step-pending {
+            border-left: 4px solid transparent;
+        }
+        .card-selectable {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-selectable:hover {
+            transform: translateY(-4px);
+            border-color: var(--aleg-blue);
+            box-shadow: 0 10px 25px -5px rgba(29, 78, 216, 0.1);
+        }
+        .card-active {
+            border-color: var(--aleg-blue);
+            background-color: #eff6ff;
+            ring: 2px solid var(--aleg-blue);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="h-screen bg-slate-50 flex overflow-hidden antialiased">
+<aside class="w-[30%] navy-master-bg flex flex-col p-12 text-white relative">
+<div class="hexagonal-grid-3d"></div>
+<div class="crystalline-glow"></div>
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex items-center gap-4 mb-20">
+<div class="bg-aleg-blue p-2.5 rounded-xl">
+<span class="material-symbols-outlined text-white text-2xl">shield</span>
+</div>
+<span class="text-xl font-black tracking-tighter">ALEG SOLUCIONES</span>
+</div>
+<nav class="flex-1 space-y-8">
+<div class="step-active py-4 pl-6 -ml-6 flex items-center gap-5">
+<div class="w-10 h-10 rounded-full bg-aleg-blue flex items-center justify-center font-bold text-white shadow-[0_0_15px_rgba(29,78,216,0.5)]">1</div>
+<div>
+<p class="text-sm font-bold text-white uppercase tracking-wider">DATOS &amp; PERFIL</p>
+<p class="text-xs text-slate-400">Información legal y rubro</p>
+</div>
+</div>
+<div class="step-pending py-4 pl-6 -ml-6 flex items-center gap-5 opacity-60">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center font-bold text-slate-400">2</div>
+<div>
+<p class="text-sm font-bold text-slate-400 uppercase tracking-wider">PLAN DE SUSCRIPCIÓN</p>
+<p class="text-xs text-slate-500">Escoge tu nivel de acceso</p>
+</div>
+</div>
+<div class="step-pending py-4 pl-6 -ml-6 flex items-center gap-5 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center font-bold text-slate-400">3</div>
+<div>
+<p class="text-sm font-bold text-slate-400 uppercase tracking-wider">MÓDULOS &amp; PLUGINS</p>
+<p class="text-xs text-slate-500">Personaliza tus herramientas</p>
+</div>
+</div>
+<div class="step-pending py-4 pl-6 -ml-6 flex items-center gap-5 opacity-40">
+<div class="w-10 h-10 rounded-full border-2 border-slate-700 flex items-center justify-center font-bold text-slate-400">4</div>
+<div>
+<p class="text-sm font-bold text-slate-400 uppercase tracking-wider">PAGO &amp; CONTRATO</p>
+<p class="text-xs text-slate-500">Cierre del registro legal</p>
+</div>
+</div>
+</nav>
+<div class="mt-auto pt-10 border-t border-white/10 opacity-50">
+<p class="text-[10px] font-bold tracking-[0.3em] uppercase">Security Engine v4.0</p>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto custom-scrollbar bg-white relative">
+<div class="max-w-5xl mx-auto px-12 py-16 pb-40">
+<header class="mb-12">
+<h1 class="text-4xl font-black text-slate-900 tracking-tight mb-3">Únete a ALEG Soluciones</h1>
+<p class="text-lg text-slate-500">Configura tu ecosistema de gestión en minutos</p>
+</header>
+<div class="space-y-20">
+<section>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-aleg-blue">corporate_fare</span>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Sección A: Datos Generales</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-600 uppercase ml-1">Razón Social</label>
+<input class="w-full px-4 py-4 rounded-xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-aleg-blue/5 focus:border-aleg-blue transition-all outline-none" placeholder="Ej: Mi Empresa S.A.C." type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-600 uppercase ml-1">RUC</label>
+<input class="w-full px-4 py-4 rounded-xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-aleg-blue/5 focus:border-aleg-blue transition-all outline-none" placeholder="20XXXXXXXXX" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-600 uppercase ml-1">Email Corporativo</label>
+<input class="w-full px-4 py-4 rounded-xl border-slate-200 bg-slate-50 focus:bg-white focus:ring-4 focus:ring-aleg-blue/5 focus:border-aleg-blue transition-all outline-none" placeholder="admin@empresa.com" type="email"/>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-aleg-blue">category</span>
+<h3 class="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Sección B: Rubro de Negocio</h3>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="card-selectable group cursor-pointer border-2 border-slate-100 rounded-2xl p-8 text-center bg-white">
+<div class="w-16 h-16 bg-pink-50 text-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">spa</span>
+</div>
+<h4 class="font-bold text-slate-900">DERMA</h4>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">Estética &amp; Piel</p>
+</div>
+<div class="card-selectable group cursor-pointer border-2 border-slate-100 rounded-2xl p-8 text-center bg-white">
+<div class="w-16 h-16 bg-blue-50 text-aleg-blue rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">pets</span>
+</div>
+<h4 class="font-bold text-slate-900">VET</h4>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">Salud Animal</p>
+</div>
+<div class="card-selectable group cursor-pointer border-2 border-slate-100 rounded-2xl p-8 text-center bg-white">
+<div class="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+</div>
+<h4 class="font-bold text-slate-900">CRAFT</h4>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">Manufactura</p>
+</div>
+<div class="card-selectable group cursor-pointer border-2 border-slate-100 rounded-2xl p-8 text-center bg-white">
+<div class="w-16 h-16 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">confirmation_number</span>
+</div>
+<h4 class="font-bold text-slate-900">EVENTS</h4>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">Experiencias</p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<footer class="fixed bottom-0 right-0 w-[70%] bg-white border-t border-slate-100 px-12 py-6 flex items-center justify-between z-50">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-slate-300 tracking-[0.2em] uppercase">DERECHOS RESERVADOS POR ALEG SOLUCIONES S.A.C. | 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 font-bold text-sm hover:text-slate-600 transition-colors uppercase tracking-widest">Guardar Borrador</button>
+<button class="px-8 py-4 bg-aleg-blue text-white font-bold rounded-2xl shadow-xl shadow-aleg-blue/30 hover:brightness-110 hover:-translate-y-0.5 transition-all flex items-center gap-3 tracking-wide">
+                    CONTINUAR AL SIGUIENTE PASO
+                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+</div>
+</footer>
+</main>
+
+</body></html>

@@ -1,19 +1,20 @@
 services:
   # 🗄️ BASE DE DATOS (Layer 1)
-  mysql:
-    image: mysql:8.0
-    container_name: aleg-mysql-prod
+  database:
+    image: postgres:16-alpine
+    container_name: aleg-database-prod
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
-      MYSQL_DATABASE: aleg_global
+      POSTGRES_USER: ${DB_USER:-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-aleg_global}
     volumes:
-      - aleg_mysql_data_prod:/var/lib/mysql
+      - aleg_db_prod_data:/var/lib/postgresql/data
       # En producción, init.sql solo corre si el volumen está vacío
       - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - aleg-prod-net
+      - aleg-network
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-root}" ]
+      test: [ "CMD", "pg_isready", "-U", "${DB_USER:-root}", "-d", "${DB_NAME:-aleg_global}" ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -30,17 +31,18 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: production
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_USER: root
+      DB_TYPE: postgres
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-root}
       DB_PASSWORD: ${DB_PASSWORD:-root}
-      DB_NAME: aleg_global
+      DB_NAME: ${DB_NAME:-aleg_global}
       # SWAGGER_ENABLED: "false" # Default in prod
     depends_on:
-      mysql:
+      database:
         condition: service_healthy
     networks:
-      - aleg-prod-net
+      - aleg-network
     restart: always
 
   # 🎨 FRONTEND SPA (Layer 3)
@@ -54,12 +56,12 @@ services:
     depends_on:
       - backend
     networks:
-      - aleg-prod-net
+      - aleg-network
     restart: always
 
 networks:
-  aleg-prod-net:
+  aleg-network:
     driver: bridge
 
 volumes:
-  aleg_mysql_data_prod:
+  aleg_db_prod_data:
